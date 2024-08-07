@@ -1,0 +1,30 @@
+import java.util.*;
+//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
+// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
+public class Main {
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        boolean result = ishappyno(n);
+        System.out.println(result);
+    }
+
+    public static boolean ishappyno(int n){
+        Set<Integer> seen = new HashSet<>();
+        while(n!=1) {
+            int sumofsq = 0;
+            while (n > 0) {
+                int digit = n % 10;
+                sumofsq += digit * digit;
+                n /= 10;
+            }
+            if (seen.contains(sumofsq)) {
+                return false;
+            }
+            seen.add(sumofsq);
+            n = sumofsq;
+        }
+        return true;
+    }
+
+}
